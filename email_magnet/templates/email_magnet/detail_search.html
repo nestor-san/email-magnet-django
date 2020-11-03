@@ -1,0 +1,37 @@
+{% extends 'email_magnet/base.html' %}
+
+{% block content %}
+   
+
+    <div class="container">
+
+        <div class="row my-5">
+            <div class="col">
+            <h1 class="text-center">Discover Hidden Emails of TOP Decision Makers</h1>
+    
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col mx-auto">
+    <p>You only need to fill the following form with the domain of the company that you try to contact and some personal information about one of their employers.</p>
+    <div class="row">
+    <form method="POST">
+        {% csrf_token %}
+        <label for="company_domain">The domain name of the company is: *</label>
+        <input type="text" name="company_domain" id="company_domain" required required placeholder="Company website"><br>
+        <label for="employer_first_name">The first name of the employer: *</label>
+        <input type="text" name="employer_first_name" id="employer_first_name" required><br>
+        <label for="employer_middle_name">The middle name of the employer, if any: </label>
+        <input type="text" name="employer_middle_name" id="employer_middle_name" placeholder="Optional field"><br>
+        <label for="employer_last_name">The last name of the employer: *</label>
+        <input type="text" name="employer_last_name" id="employer_last_name" required><br>
+        <p>* Required Field</p>
+
+
+        <input type="submit" class="btn btn-primary" value="Discover The Email">
+        </form>
+        </div>
+        </div>
+    </div>
+{% endblock %}

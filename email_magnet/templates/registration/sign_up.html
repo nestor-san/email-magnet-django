@@ -1,0 +1,18 @@
+{% extends 'email_magnet/base.html' %}
+
+{% block title %}Sign up at Email Magnet{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-10">
+<h2>Sign up</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{  form|crispy }}
+    <button type="submit">Sign up</button>
+</form>
+</div>
+</div>
+{% endblock %}

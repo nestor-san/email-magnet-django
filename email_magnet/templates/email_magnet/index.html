@@ -1,0 +1,42 @@
+{% extends 'email_magnet/base.html' %}
+{% block title %}Email Magnet Website{% endblock %}
+{% block content %}
+   <div class="row justify-content-center">
+       <div class="col-md-9 mx-5 justify-content-center">
+       <h1 style="text-align: center;">Get More and Better Prospects with Email Magnet</h1>
+   </div> 
+</div>
+
+<div class="row justify-content-center">
+
+        <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center">
+            <div class="card my-3 mx-5">
+                 <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Do you know the full name of the person you want to contact?</h5>
+                    </div>
+                  <p class="card-text text-justify">If you know the first and last name of the person you want to contact and the website where he/she is working, try the Detailed Search.</p>
+                  <div class="text-center">
+                  <a href="{% url 'email_magnet:detail_search' %}" class="btn btn-primary">Detailed Search</a>
+                </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4 d-flex justify-content-center">
+            <div class="card my-3 mx-5">
+                 <div class="card-body">
+                    <div class="text-center">
+                  <h5 class="card-title">Do you only know the name of the company?</h5>
+                    </div>
+                  <p class="card-text text-justify">If you only know the website of the company that you want to contact, you can try the Brute Search (Usually, the detailed search is recommended).</p>
+                  <div class="text-center">
+                  <a href="{% url 'email_magnet:brute_search' %}" class="btn btn-primary">Brute Search</a>
+                </div>
+                </div>
+              </div>
+        </div>
+
+</div>
+
+{% endblock %}
