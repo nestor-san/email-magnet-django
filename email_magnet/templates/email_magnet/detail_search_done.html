@@ -2,20 +2,43 @@
 {% block title %}Detailed Email Search{% endblock %}
 {% block content %}
    
-
-    <div class="container">
-
-        <div class="row my-5">
-            <div class="col">
-            <h1 class="text-center">Discover Hidden Emails of TOP Decision Makers</h1>
-    
-        </div>
-    </div>
     
     <div class="row">
         <div class="col mx-auto">
-    <p>You only need to fill the following form with the domain of the company that you try to contact and some personal information about one of their employers.</p>
+            <div class="row">
+                <div class="col">
+            <h1>Your request is being processed... <h1>
+            </div>
+        </div>
+          
+<div class="row">
+    <div class="col">
+            <h4>It may take some time to get your results. You will receive an email when it's ready.</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>There are some things you can do in the meantime: </p>
+            <ul>
+                <li>Search for<a href="{% url 'email_magnet:detail_search'%}"> more emails</a></li>
+                <li>Check your <a href="#">current searches</a></li>
+                <li>Try a <a href="#">brute force search</a> to discover emails without knowing anyone at the company.</li>
+                <li>Share your <a href="mailto:hi@nestorsan.com">feedback</a>.</li>
+                <li>Visit my <a href="http://nestorsan.com/">website</a>.</li>
+                <li>Take a coffe.</li>
+            </ul>
+        </div>
+    </div>
 
+<div class="row">
+    {{ context.0 }}
+</div>
+<div class="row">
+    {{ context.1 }}
+</div>
+ 
+ 
+    </div>
         </div>
     </div>
 {% endblock %}
