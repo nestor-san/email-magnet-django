@@ -21,7 +21,7 @@
             <p>There are some things you can do in the meantime: </p>
             <ul>
                 <li>Search for<a href="{% url 'email_magnet:detail_search'%}"> more emails</a></li>
-                <li>Check your <a href="#">current searches</a></li>
+                <li>Check your <a href="{% url 'email_magnet:detailed_results'%}">current searches</a></li>
                 <li>Try a <a href="#">brute force search</a> to discover emails without knowing anyone at the company.</li>
                 <li>Share your <a href="mailto:hi@nestorsan.com">feedback</a>.</li>
                 <li>Visit my <a href="http://nestorsan.com/">website</a>.</li>
@@ -29,16 +29,8 @@
             </ul>
         </div>
     </div>
-
-<div class="row">
-    {{ context.0 }}
-</div>
-<div class="row">
-    {{ context.1 }}
-</div>
- 
  
     </div>
         </div>
-    </div>
+    
 {% endblock %}

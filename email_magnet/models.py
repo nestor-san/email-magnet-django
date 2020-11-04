@@ -16,7 +16,8 @@ class DetailSearch(models.Model):
         name = 'Search for {} {} {} at {}'.format(self.first_name, self.middle_name, self.last_name, self.domain)
         return name
     
-
+    #check if it's possible to find a valid email with the details provided(domain & first/middle/last name)
     def get_valid_email(self):
         emails = detailed_search.detailed_search(self.domain, self.first_name, self.middle_name, self.last_name)
-        return emails
+        self.possible_emails = emails[0]
+        self.valid_emails = emails[1]

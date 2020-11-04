@@ -37,10 +37,12 @@ def detailed_search(domain, first_name=None, middle_name=None, last_name=None):
         #Begin to populate the emails list using only the first name and the domain
         if first_name:
             emails.append('{}@{}'.format(first_name, domain))
+            emails.append('{}@{}'.format(first_initial, domain))
 
         #Populate the emails list using only the last name and the domain
         if last_name:
             emails.append('{}@{}'.format(last_name, domain))
+            emails.append('{}@{}'.format(last_initial, domain))
 
         #Populate the emails list using the first name, the last name and the domain    
         if (first_name and last_name):
@@ -109,17 +111,24 @@ def detailed_search(domain, first_name=None, middle_name=None, last_name=None):
         return emails
 
     emails = email_list_generator(domain, first_name, middle_name, last_name)
+    valid_emails = []
     for email in emails:
         is_valid = validate_email(email_address=email, check_regex=True, check_mx=True, from_address=from_adress, helo_host=from_host, smtp_timeout=smtp_timeout, dns_timeout=dns_timeout, use_blacklist=False, debug=False)
         if (is_valid==True):
+            valid_emails.append(email)
             print("""
 ------------------------------------------
 We found a valid email with your search query
             """)
-            print('The email you\'re looking for is {}'.format(email))
+            print('One email you\'re looking for is {}'.format(email))
             print('------------------------------------------')
-            return emails, email
+
+    #Give some feedback if there are no valid emails
+    if not valid_emails:
+        valid_emails.append('There are no valid emails')
+
+    return emails, valid_emails
 """
 Test the function if necessary. Fter testing, leave it commented.
 """
-#detailded_search('xemob.com', 'nestor', None, 'Sanchez')
+#detailed_search('xemob.com', 'nestor', None, None)

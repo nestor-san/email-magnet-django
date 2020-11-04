@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import RegisterForm, DetailSearchForm
 from django.contrib.auth.decorators import login_required
-
+from .models import DetailSearch
 
 # Create your views here.
 
@@ -19,8 +19,8 @@ def detail_search(request):
             new_detail_search = form.save(commit=False)
             new_detail_search.user = request.user
             new_detail_search.save()
-            #get_emails = new_detail_search.get_valid_email()
-            #print(get_emails)
+            #new_detail_search.get_valid_email()
+            #new_detail_search.save()
             return render(request, 'email_magnet/detail_search_done.html')
         except ValueError:
             return render(request, 'email_magnet/detail_search.html', {'form': form, 'error': 'There are errors in your data. Please, check and try again.'})
@@ -46,4 +46,8 @@ def sign_up(request):
         form = RegisterForm()
     return render(request, 'registration/sign_up.html', {'form': form})
 
-
+def detailed_results(request):
+    completed_searches = DetailSearch.objects.filter(valid_emails__isnull=False)
+    pending_searches = DetailSearch.objects.filter(valid_emails=None)
+   
+    return render(request, 'email_magnet/detailed_results.html', {'completed': completed_searches, 'pending': pending_searches})
