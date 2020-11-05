@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -51,3 +51,25 @@ def detailed_results(request):
     pending_searches = DetailSearch.objects.filter(valid_emails=None)
    
     return render(request, 'email_magnet/detailed_results.html', {'completed': completed_searches, 'pending': pending_searches})
+
+def detailed_search_detail(request, search_pk):
+    search = get_object_or_404(DetailSearch, pk=search_pk, user=request.user)
+    if request.method == 'POST':
+        form = DetailSearchForm(request.POST, instance=search)
+        try:
+            form.save()
+            search.possible_emails = None
+            search.valid_emails = None
+            form.save()
+            return redirect('email_magnet:detailed_results')
+        except ValueError:
+            return render(request, 'email_magnet/detailed_search_view.html', {'search': search, 'form': form, 'error':'There was an issue with your data. Please, try again.'})
+    else:
+        form = DetailSearchForm(instance=search)
+        return render(request, 'email_magnet/detailed_search_view.html', {'search': search, 'form': form})
+
+def delete_search(request, search_pk):
+    search = get_object_or_404(DetailSearch, pk=search_pk, user=request.user)
+    if request.method=='POST':
+        search.delete()
+        return redirect('email_magnet:detailed_results')

@@ -126,6 +126,10 @@ We found a valid email with your search query
     #Give some feedback if there are no valid emails
     if not valid_emails:
         valid_emails.append('There are no valid emails')
+    
+    #Convert the valid emails list to a readable string
+    separator = ', '
+    valid_emails = separator.join(valid_emails)    
 
     return emails, valid_emails
 """

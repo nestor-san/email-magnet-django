@@ -1,0 +1,26 @@
+{% extends 'email_magnet/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+    
+    <div class="row">
+        <div class="col mx-auto"> 
+            <h1>{{ search }}</h1>        
+            
+            <p>Permanently delete this search:<form method="POST" action="{{ search.id }}/delete">
+                {% csrf_token %}         
+                <input type="submit" class="btn btn-danger" value="Delete">
+            </form> </p>
+                    
+    <p class="error">{{ error }}</p>        
+    <p>You can edit all the details below:</p>
+  
+        <form method="POST">
+            {% csrf_token %}
+            {{  form|crispy }}
+            <input type="submit" class="btn btn-primary" value="Edit the details">
+        </form>
+                
+        </div>
+    </div>
+{% endblock %}

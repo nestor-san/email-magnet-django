@@ -1,17 +1,20 @@
 {% extends 'email_magnet/base.html' %}
-
 {% block content %}
+
 {% load crispy_forms_tags %}
     
     <div class="row">
         <div class="col mx-auto">
             <h1>Here you have all your data</h1>
+
     <p>In case you want to export it, click <a href="#">here</a>.</p>
-  
-    <div class="row">
-<h3>Completed searches:</h3><br>
+
+       
+
+   
+<h3>Completed searches:</h3>
     </div>
-<div class="row">
+
     <div class="col-12">
 <table width="100%">
     <tr>
@@ -27,14 +30,22 @@
       <td>  {{search.first_name}}</td>
       <td>  {{search.middle_name}}</td>
       <td>  {{search.last_name}}</td>
-      <td>  {{search.valid_emails}}</td>
+      <td>  {{ search.valid_emails }}</td>
+      <td><a href="{% url 'email_magnet:detailed_search_detail' search.id %}">Edit</a></td>
+      <td><form method="POST" action="detailed_results/{{ search.id }}/delete">
+        {% csrf_token %}         
+        <input type="submit" class="btn-xs btn-danger" value="Delete">
+    </form></td>
     </tr>
        
     {% endfor %}
+
+
 </table>
 </div>
 </div>
 <br>
+{% if pending %}
 <div class="row">
     <h3>Pending Searches:</h3><br>
         </div>
@@ -55,6 +66,11 @@
           <td>  {{search.middle_name}}</td>
           <td>  {{search.last_name}}</td>
           <td>  {{search.valid_emails}}</td>
+          <td><a href="{% url 'email_magnet:detailed_search_detail' search.id %}">Edit</a></td>
+          <td><form method="POST" action="detailed_results/{{ search.id }}/delete">
+            {% csrf_token %}         
+            <input type="submit" class="btn-xs btn-danger" value="Delete">
+        </form></td>
         </tr>
            
         {% endfor %}
@@ -62,9 +78,12 @@
     </div>
     </div>
 
+    {% endif %}
 
+  
 
 
 </div>
 </div>
+
 {% endblock %}
