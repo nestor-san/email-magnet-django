@@ -137,5 +137,5 @@ EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
 CRONJOBS = [
-    ('*/1 * * * *', 'email_magnet.cron.my_cron_job')
+    ('*/10 * * * *', 'email_magnet.cron.my_cron_job')
 ]

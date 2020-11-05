@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import RegisterForm, DetailSearchForm
 from django.contrib.auth.decorators import login_required
 from .models import DetailSearch
+import csv
 
 # Create your views here.
 
@@ -48,8 +49,7 @@ def sign_up(request):
 @login_required
 def detailed_results(request):
     completed_searches = DetailSearch.objects.filter(valid_emails__isnull=False, user=request.user)
-    pending_searches = DetailSearch.objects.filter(valid_emails=None, user=request.user)
-   
+    pending_searches = DetailSearch.objects.filter(valid_emails=None, user=request.user)   
     return render(request, 'email_magnet/detailed_results.html', {'completed': completed_searches, 'pending': pending_searches})
 
 @login_required
@@ -75,3 +75,31 @@ def delete_search(request, search_pk):
     if request.method=='POST':
         search.delete()
         return redirect('email_magnet:detailed_results')
+
+@login_required
+def export_data(request):
+    if request.method == 'POST':
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="email_magnet_data.csv"'
+        
+        try:
+            if request.POST['only_valid_emails'] and request.POST['pending_searches']:
+                searches = DetailSearch.objects.filter(user=request.user).exclude(valid_emails='There are no valid emails')
+        except: 
+            try:
+                if request.POST['only_valid_emails']:
+                    searches = DetailSearch.objects.filter(user=request.user).exclude(valid_emails='There are no valid emails').filter(valid_emails__isnull=False)
+            except:
+                try:
+                    if request.POST['pending_searches']:
+                        searches = DetailSearch.objects.filter(user=request.user)
+                except:
+                    searches = DetailSearch.objects.filter(user=request.user).filter(valid_emails__isnull=False)
+
+        writer = csv.writer(response)
+        writer.writerow(['Domain name','First name','Middle name','Last name','Valid emails'])
+        for search in searches:
+            writer.writerow([search.domain,search.first_name,search.middle_name,search.last_name, search.valid_emails])
+        return response  
+    else:
+        return render(request, 'email_magnet/export_data.html')

@@ -1,0 +1,38 @@
+{% extends 'email_magnet/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+    
+    <div class="row">
+        <div class="col mx-auto">
+            <h1>Export your precious data</h1>
+
+    <p>The fields of your exported file will be the following:</p>
+    <ul>
+        <li>Domain name</li>
+        <li>First name</li>
+        <li>Middle name</li>
+        <li>Last name</li>
+        <li>Valid emails</li>
+    </ul>
+
+    <br><h3>Select your data parameters:</h3><br>
+  
+        <form method="POST">
+            {% csrf_token %}
+            
+            <input type="checkbox" id="only_valid_emails" name="only_valid_emails" value="only_valid_emails" checked>
+            <label for="only_valid_emails"> Export only searches with validated emails.</label>
+            <small class="form-text text-muted">Check if you only want to export successful searches. Uncheck to download all data, even if the search didn't get any successful result.</small><br>
+            <input type="checkbox" id="pending_searches" name="pending_searches" value="pending_searches">
+            <label for="pending_searches"> Include pending searches.</label>
+            <small class="form-text text-muted">Check if you want to export pending searches (searches that hasn't been performed by the system). It won't provide any email.</small>
+            <br>
+
+            
+            <input type="submit" class="btn btn-primary" value="Download">
+        </form>
+                
+        </div>
+    </div>
+{% endblock %}

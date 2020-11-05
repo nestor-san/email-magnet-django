@@ -18,3 +18,5 @@ class DetailSearchForm(ModelForm):
         model = DetailSearch
         fields = ['domain', 'first_name', 'middle_name', 'last_name']
 
+
+
