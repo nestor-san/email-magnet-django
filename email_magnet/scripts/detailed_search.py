@@ -133,6 +133,6 @@ We found a valid email with your search query
 
     return emails, valid_emails
 """
-Test the function if necessary. Fter testing, leave it commented.
+Test the function if necessary. After testing, leave it commented.
 """
 #detailed_search('xemob.com', 'nestor', None, None)

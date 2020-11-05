@@ -6,4 +6,5 @@ def my_cron_job():
     for search in pending_search:
         search.get_valid_email()
         search.save()
+        search.notify_user()
 

@@ -10,6 +10,7 @@
     {% csrf_token %}
     {{  form|crispy }}
     <p>Forgot your password? <a href="{% url 'password_reset' %}">Reset your password!</a></p>
+    <p>Not registered yet? <a href="{% url 'email_magnet:signup' %}">Sign up!</a></p>
     <button type="submit">Log In</button>
 </form>
 </div>
