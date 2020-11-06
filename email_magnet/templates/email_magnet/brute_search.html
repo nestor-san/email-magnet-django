@@ -15,15 +15,20 @@
     <div class="row">
         <div class="col mx-auto">
     <p>You only need to write a domain name, and Email Magnet will do it's best to supply you as many emails as possible within this company</p>
-    <div class="row">
+
+    {% if error %}
+<p class="alert alert-danger">{{ error }}</p>
+   {% endif %}
+
     <form method="POST">
         {% csrf_token %}
         <label for="company_domain">The domain name of the company is: *</label>
         <input type="text" name="company_domain" id="company_domain" required placeholder="Company website"><br>
         <p>* Required Field</p>
-        <input type="submit" class="btn btn-primary" value="Get The Emails">
+        <p class="alert alert-danger">The brute force search is still in development. Once you can use, you will be notified by email.</p>
+        <input type="submit" class="btn btn-primary" disabled value="Get The Emails">
         </form>
-        </div>
+
         </div>
     </div>
 {% endblock %}

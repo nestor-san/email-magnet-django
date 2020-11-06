@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+    <title>Email Magnet: {% block title %}{% endblock %}</title>
   </head>
   <body>
     
@@ -29,14 +29,14 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{% url 'email_magnet:detail_search' %}">Detailed Search</a>
-              <a class="dropdown-item" href="{% url 'email_magnet:brute_search' %}">Brute Force Search</a>
+              <a class="dropdown-item" href="{% url 'email_magnet:brute_search' %}" disabled>Brute Force Search</a>
              </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'email_magnet:detailed_results' %}">Results <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Source code <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://github.com/nestor-san/email-magnet-django" target="blank">Source code <span class="sr-only">(current)</span></a>
           </li>
 
         </ul>

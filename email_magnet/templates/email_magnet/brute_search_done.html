@@ -1,5 +1,5 @@
 {% extends 'email_magnet/base.html' %}
-{% block title %}Detailed Email Search{% endblock %}
+{% block title %}Brute Search in progress{% endblock %}
 {% block content %}
    
     
@@ -20,8 +20,8 @@
         <div class="col">
             <p>There are some things you can do in the meantime: </p>
             <ul>
-                <li>Search for<a href="{% url 'email_magnet:detail_search'%}"> more emails</a></li>
-                <li>Try a <a href="{% url 'email_magnet:brute_search'%}">brute force search</a> to get emails from TOP "unreachable" companies.</li>
+                <li>Try a Detailed Search to improve your changes of getting <a href="{% url 'email_magnet:detail_search'%}">valid emails</a></li>
+                <li>Search for<a href="{% url 'email_magnet:brute_search'%}"> more emails</a> with brute search</li>
                 <li>Check your <a href="{% url 'email_magnet:detailed_results'%}">current searches</a></li>
                 <li>Try a <a href="#">brute force search</a> to discover emails without knowing anyone at the company.</li>
                 <li>Share your <a href="mailto:hi@nestorsan.com">feedback</a>.</li>
