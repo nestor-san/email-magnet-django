@@ -8,7 +8,7 @@
         <div class="col mx-auto">
             <h1>Here you have all your data</h1>
 
-    <p>In case you want to export it, click <a href="#">here</a>.</p>
+    <p>In case you want to export it, click <a href="{% url 'email_magnet:export_data' %}">here</a>.</p>
     <p>To make a new search, go to <a href="{% url 'email_magnet:detail_search' %}">detailed search</a> (recommended) or <a href="{% url 'email_magnet:brute_search' %}">brute force search</a>.</p>
 
           
