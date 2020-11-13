@@ -1,5 +1,17 @@
 # Email-magnet-django
 
+## Table of Contents
+
+* [About](#about)
+* [How to Deploy](#how-to-deploy)
+* [Build With](#build-with)
+* [Contributing](#contributing )
+* [Autor](#autor)
+* [License](#license)
+* [Say thank you](#Say-thank-you)
+
+
+## About
 _Email magnet is a simple program that, given a domain name and a personal name, is able
 to guess and validate the email adress of such person. 
 In order to do that, it creates list with all the possible emails schemes based on the first name,
@@ -8,6 +20,7 @@ When the list is crated, Email Magnet checks if the emails are valid and if they
 
 _This version of Email Magnet is a web app created with Django Web Framework. In case you're not
 interested to deploy this app as a web app, you can check the [Email Magnet version for command line](https://github.com/nestor-san/email_magnet)._
+
 
 ## How to Deploy
 
@@ -25,10 +38,6 @@ _This project has been built using Python with VScode, Django web Framework and 
 ## Contributing 🖇️
 
 Feel free to contribute and improve this project if you like. Just contact me or do at your own risk.
-
-## Wiki 📖
-
-There is no wiki yet.
 
 
 ## Autor ✒️
